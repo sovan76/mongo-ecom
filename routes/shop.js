@@ -2,13 +2,21 @@ const path = require('path');
 
 const express = require('express');
 
-const rootDir = require('../util/path');
+// const rootDir = require('../util/path');
+const shopcontroller=require('../controllers/shop');
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-  res.render('shop');
+router.get('/', shopcontroller.getIndex);
+  // res.render('shop');
   // res.sendFile(path.join(rootDir, 'views', 'shop.html'));
-});
+// router.get('',shopcontroller.pagefault);
+router.get('/products',shopcontroller.getshop);
 
-module.exports = router;
+router.get('/cart',shopcontroller.getcart);
+
+router.get('/checkout',shopcontroller.getcheckout);
+
+router.get('admin/products',shopcontroller.getprodetail);
+
+module.exports = router; 
