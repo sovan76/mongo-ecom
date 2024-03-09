@@ -15,7 +15,7 @@ router.get('/products',shopcontroller.getshop);
 
 router.get('/cart',shopcontroller.getcart);
 
-router.get('/checkout',shopcontroller.getcheckout);
+router.get('/orders',shopcontroller.getorders);
 
 router.get('admin/products',shopcontroller.getprodetail);
 

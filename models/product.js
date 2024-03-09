@@ -11,15 +11,17 @@ module.exports = class Product {
   }
 
   save() {
-   
+     return db.execute('INSERT INTO  products  (title, price, imageurl, description)  VALUES (?,?,?,?)',
+     this.title,this.price, this.imageUrl, this.description );
   }
   static deletedById(id){
 
   }
   static fetchAll() {
-    return db.execute('SELECT * FROM products');
+    return db.execute('SELECT * FROM products LIMIT 1');
   }
   static findById(){
+
 
   }
 
