@@ -9,16 +9,28 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
+  console.log('Form data:', req.body);  // Log form data to check if it's correct
   const title = req.body.title;
-  const imageUrl = req.body.imageUrl;
-  const price = req.body.price;
+  const price = req.body.price;  // Ensure price is a float
+  console.log('Parsed price:', price);
+  // if (isNaN(price)) {
+  //   console.log('Invalid price:', req.body.price);
+  //   return res.status(400).send('Invalid price');
+  // }
   const description = req.body.description;
-  const product = new Product(null, title, imageUrl, description, price);
+  const imageurl = req.body.imageurl;
+  const product = new Product(null, title, price, description, imageurl);
+
   product.save()
-  .then(res.redirect('/'))
-  .catch(err=>{console.log(err)});
-  res.redirect('/');
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send('Error saving product');
+    });
 };
+
 
 exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;

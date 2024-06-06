@@ -2,7 +2,7 @@ const Product = require('../models/product');
 
 exports.getshop=(req,res,next)=>{
     Product.fetchAll()
-    .then(([rows,fieldData])=>{
+    .then(([rows,fieldData])=>{          // destructuring syntax
      res.render('shop/product-list',{
         prods:rows,
         pageTitle: 'All products',
