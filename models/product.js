@@ -1,6 +1,6 @@
-const db=require('../util/database');
+const getDb=require('../util/database').getDb;
 const Cart =require('./cart');
-const fs=require('fs');
+
 
 module.exports=class Product {
   constructor(id, title, price, description, imageurl) {
@@ -9,32 +9,30 @@ module.exports=class Product {
     this.price = price;  
     this.description = description;
     this.imageurl = imageurl;
-    console.log('Product constructor:', this.title, this.price, this.description, this.imageurl); // Log data in constructor
   }
-
+ 
   save() {
-    // if (isNaN(this.price) || this.price < 0 || this.price > 99999999.99) {
-    //   return Promise.reject(new Error('Price is out of range or not a number'));
-    // }
-
-    // console.log('Inserting product:', this.title, this.price, this.description, this.imageurl); // Log data before insertion
-
-    return db.execute(
-      'INSERT INTO products (title, price, description, imageurl) VALUES (?, ?, ?, ?)',
-      [this.title, this.price, this.description, this.imageurl]
-    );
-  }
-  
-  static deletedById(id){
-    // return db.execute()
-
-  }  
-  static fetchAll() {
-    return db.execute('SELECT * FROM products ');
-  }
-  static findById(){
-    
-
+      const db=getDb();
+      return db.collection('products').insertOne(this)
+      .then(result=>{
+        console.log(result);
+      })
+      .catch(err=>{
+        console.log(err);
+      })
   }
 
-};
+  static fetchAll(){
+    const db=getDb();
+    return db.collection('products')
+    .find()
+    .toArray()
+    .then(products=>{
+      console.log(products);
+      return products;
+    })
+    .catch(err =>{
+      console.log(err);
+    })
+  }
+}

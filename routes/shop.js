@@ -13,11 +13,12 @@ router.get('/', shopcontroller.getIndex);
 // router.get('',shopcontroller.pagefault);
 router.get('/products',shopcontroller.getshop);
 
-router.get('/cart',shopcontroller.getcart);
+// router.get('/cart',shopcontroller.getcart);
+ 
 
+// router.get('/orders',shopcontroller.getorders);
 
-router.get('/orders',shopcontroller.getorders);
-
-router.get('admin/products',shopcontroller.getprodetail);
+// router.get('admin/products',shopcontroller.getprodetail);
 
 module.exports = router; 
+  

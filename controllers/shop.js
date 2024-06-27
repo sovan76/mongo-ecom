@@ -2,12 +2,12 @@ const Product = require('../models/product');
 
 exports.getshop=(req,res,next)=>{
     Product.fetchAll()
-    .then(([rows,fieldData])=>{          // destructuring syntax
+    .then(products =>{         
      res.render('shop/product-list',{
-        prods:rows,
+        prods: products,
         pageTitle: 'All products',
-        path: '/products' 
-     })
+        path: '/products'  
+     }) 
    }).catch(err=>{
       console.log(err);
    });
@@ -15,17 +15,14 @@ exports.getshop=(req,res,next)=>{
 
 exports.getIndex=(req,res,next)=>{
     Product.fetchAll()
-   .then(([rows,fieldData])=>{
-        rows.forEach(product => {
-         console.log(product.imageurl);
-        });
+   .then(products=>{
          res.render('shop/index',{
-         prods: rows,
+         prods: products,
          pageTitle: 'Shop',
          path: '/' 
       });
    })
-   .catch(err=>{
+   .catch(err=>{ 
       console.log(err);
    });
 } 
