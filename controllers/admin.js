@@ -7,7 +7,8 @@ exports.getAddProduct = (req, res, next) => {
   res.render('admin/add-product', {
     pageTitle: 'Add Product',
     path: '/admin/add-product',
-    editing: false
+    editing: false,
+    isauthenticated: req.session.isLoggedIn
   });
 };
 
@@ -15,7 +16,8 @@ exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
   const price = req.body.price;  
   const description = req.body.description;
-  const imageurl = req.body.imageurl;
+  // const imageurl = req.body.imageurl;
+  const imageurl = req.file;
   const product = new Product(null, title, price, description, imageurl);
 
   product.save()
@@ -49,7 +51,8 @@ exports.getEditProduct = (req, res, next) => {
         pageTitle: 'Edit Product',
         path: '/admin/edit-product',
         editing: editMode,
-        product: product
+        product: product,
+        isauthenticated: req.session.isLoggedIn
       });
     })
     .catch(err => {
@@ -87,7 +90,8 @@ exports.getProducts = (req, res, next) => {
     res.render('admin/products', {
       prods: products,
       pageTitle: 'Admin Products',
-      path: '/admin/products'
+      path: '/admin/products',
+      isauthenticated: req.session.isLoggedIn
     });
     }).catch(err=>{
      console.log(err);
