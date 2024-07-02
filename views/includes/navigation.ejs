@@ -1,5 +1,8 @@
 <header class="main-header">
     <nav class="main-header__nav">
+            <li class="logo">
+                <span class="logo-text">Sovan's e-com</span>
+            </li>                
         <ul class="main-header__item-list">
             <li class="main-header__item">
                 <a class="<%= path === '/' ? 'active' : '' %>" href="/">Shop</a>
@@ -11,7 +14,7 @@
                 <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Cart</a>
             </li>
             <li class="main-header__item">
-                <a class="<%= path === '/orders' ? 'active' : '' %>" href="/ecomserve/views/shop/orders">orders</a>
+                <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">orders</a>
             </li>
             <li class="main-header__item">
                 <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Product

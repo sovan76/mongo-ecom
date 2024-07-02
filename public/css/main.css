@@ -33,6 +33,7 @@ main {
   margin: 0;
   padding: 0;
   display: flex;
+  margin-left: 280px;
 }
 
 .main-header__item {
@@ -105,4 +106,16 @@ main {
 .btn:active {
   background-color: #00695c;
   color: white;
+}
+
+.logo {
+  display: flex;
+  /* align-items: center; Align logo vertically with other items */
+}
+.logo-text {
+  font-family: Segoe Script;
+  font-size: 26px; /* Example font size */
+  font-weight: bold; /* Example font weight */
+  text-transform: uppercase; /* Example text transform */
+  color: #ffeb3b;
 }
