@@ -16,7 +16,11 @@
                                     </h1>
                                 </header>
                                 <div class="card__image">
-                                    <img src="<%= product.imageurl %>" alt="<%= product.title %>">
+                                    <% if (product.imageurl.endsWith('.pdf')) { %>
+                                        <embed src="/<%= product.imageurl %>" width="600" height="400" type="application/pdf">
+                                      <% } else { %>
+                                        <img src="/<%= product.imageurl %>" alt="<%= product.title %>">
+                                      <% } 
                                 </div>
                                 <div class="card__content">
                                     <h2 class="product__price">$

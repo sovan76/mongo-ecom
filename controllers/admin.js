@@ -17,11 +17,15 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;  
   const description = req.body.description;
   // const imageurl = req.body.imageurl;
-  const imageurl = req.file;
+  const image = req.file;
+  const imageurl=image.path; 
+
   const product = new Product(null, title, price, description, imageurl);
+
 
   product.save()
     .then(() => {
+      console.log(imageurl);
       console.log('product created');
       res.redirect('/admin/products');
     }) 
@@ -66,8 +70,10 @@ exports.postEditProduct = (req, res, next) => {
   const updatedTitle = req.body.title;
   const updatedPrice = req.body.price;
   const updatedDesc = req.body.description;
-  const updatedImageurl = req.body.imageurl;
-
+  // const updatedImageurl = req.body.imageurl;
+  const image = req.file;
+  const updatedImageurl = image.path;
+  console.log(updatedImageurl);
     const product= new Product(
       new ObjectId(prodId),
       updatedTitle ,
